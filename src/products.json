@@ -3,24 +3,48 @@
 		"id": 1,
 		"title": "Coffee Cup",
 		"category": "tableware",
-		"price": 3.5
+		"price": 3.5,
+		"description": "Amazing and lightweight coffee cup, perfect for those early morning coffee moments",
+		"rating": {
+			"rate": 4.5,
+			"count": 232
+		},
+		"image": ""
 	},
 	{
 		"id": 2,
 		"title": "Cutlery Set",
 		"category": "tableware",
-		"price": 19.9
+		"price": 19.9,
+		"description": "Beautiful silver tableware for simple home dinner or entertaining the guests",
+		"rating": {
+			"rate": 4.8,
+			"count": 94
+		},
+		"image": ""
 	},
 	{
 		"id": 3,
 		"title": "Mixing Bowl",
 		"category": "tableware",
-		"price": 9.99
+		"price": 9.99,
+		"description": "Nice bowl for your every day salad",
+		"rating": {
+			"rate": 3.9,
+			"count": 67
+		},
+		"image": ""
 	},
 	{
 		"id": 4,
 		"title": "Glasses (set of 4)",
 		"category": "tableware",
-		"price": 11.75
+		"price": 11.75,
+		"description": "Amazing glasses for every day use",
+		"rating": {
+			"rate": 4.6,
+			"count": 155
+		},
+		"image": ""
 	}
 ]

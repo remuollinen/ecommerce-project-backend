@@ -47,10 +47,9 @@ app.get("/api/cart", (req: Request, res: Response) => {
 app.post("/api/cart", (req: Request, res: Response) => {
 	try {
 		const product = { ...req.body, quantity: 1 };
-		if (
-			cartItems.length < 1 ||
-			!cartItems.find((item) => item.id === product.id)
-		) {
+		const productExist = cartItems.find((item) => item.id === product.id);
+
+		if (cartItems.length < 1 || !productExist) {
 			cartItems.push(product);
 		} else {
 			for (let item of cartItems) {
