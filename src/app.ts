@@ -3,6 +3,16 @@ import products from "./products.json";
 import cart from "./cart.json";
 import cors from "cors";
 
+interface Item {
+	id: number;
+	title: string;
+	category: string;
+	price: number;
+	quantity: number;
+}
+
+const cartItems: Item[] = cart;
+
 const app: Application = express();
 
 app.use(cors());
@@ -36,8 +46,19 @@ app.get("/api/cart", (req: Request, res: Response) => {
 });
 app.post("/api/cart", (req: Request, res: Response) => {
 	try {
-		cart.push(req.body);
-		res.send(cart);
+		const product = { ...req.body, quantity: 1 };
+		if (cartItems.length < 1) {
+			cartItems.push(product);
+		} else {
+			for (let item of cartItems) {
+				if (!item.id === product.id) {
+					cartItems.push(product);
+				} else {
+					item.quantity += 1;
+				}
+			}
+		}
+		res.json(cart);
 	} catch (error) {
 		console.log(error);
 	}
