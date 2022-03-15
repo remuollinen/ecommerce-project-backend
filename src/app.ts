@@ -9,6 +9,12 @@ interface Item {
 	category: string;
 	price: number;
 	quantity: number;
+	image: string;
+	description: string;
+	rating: {
+		rate: number;
+		count: number;
+	};
 }
 
 const cartItems: Item[] = cart;
@@ -25,6 +31,7 @@ app.get("/api/products", (req: Request, res: Response) => {
 		console.log(error);
 	}
 });
+
 app.get("/api/products/:id", (req: Request, res: Response) => {
 	try {
 		const id: number = +req.params.id;
@@ -44,6 +51,7 @@ app.get("/api/cart", (req: Request, res: Response) => {
 		console.log(error);
 	}
 });
+
 app.post("/api/cart", (req: Request, res: Response) => {
 	try {
 		const product = { ...req.body, quantity: 1 };
@@ -64,4 +72,5 @@ app.post("/api/cart", (req: Request, res: Response) => {
 		console.log(error);
 	}
 });
+
 app.listen(4000, () => console.log("server running"));
