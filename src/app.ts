@@ -47,18 +47,20 @@ app.get("/api/cart", (req: Request, res: Response) => {
 app.post("/api/cart", (req: Request, res: Response) => {
 	try {
 		const product = { ...req.body, quantity: 1 };
-		if (cartItems.length < 1) {
+		if (
+			cartItems.length < 1 ||
+			!cartItems.find((item) => item.id === product.id)
+		) {
 			cartItems.push(product);
 		} else {
 			for (let item of cartItems) {
-				if (!item.id === product.id) {
-					cartItems.push(product);
-				} else {
-					item.quantity += 1;
+				if (item.id === product.id) {
+					item.quantity++;
+					break;
 				}
 			}
 		}
-		res.json(cart);
+		res.json(cartItems);
 	} catch (error) {
 		console.log(error);
 	}
