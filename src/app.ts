@@ -73,4 +73,22 @@ app.post("/api/cart", (req: Request, res: Response) => {
 	}
 });
 
+// ***********
+// NOT WORKING
+// ***********
+
+app.patch("/api/cart/:id", (req: Request, res: Response) => {
+	try {
+		const id: number = +req.params.id;
+		const product = req.body;
+		const productIndex = cartItems.findIndex((product) => product.id === id);
+
+		cartItems[productIndex] = product;
+
+		res.json(cartItems[productIndex]);
+	} catch (error) {
+		console.log(error);
+	}
+});
+
 app.listen(4000, () => console.log("server running"));
