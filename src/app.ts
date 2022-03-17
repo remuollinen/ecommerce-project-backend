@@ -53,6 +53,10 @@ app.get("/api/cart", (req: Request, res: Response) => {
 	}
 });
 
+// ***********
+// ADD NEW CART ITEM
+// ***********
+
 app.post("/api/cart", (req: Request, res: Response) => {
 	try {
 		const product = { ...req.body, quantity: 1 };
@@ -75,7 +79,7 @@ app.post("/api/cart", (req: Request, res: Response) => {
 });
 
 // ***********
-// NOT WORKING
+// UPDATE CART ITEM
 // ***********
 
 app.post("/api/cart", (req: Request, res: Response) => {
