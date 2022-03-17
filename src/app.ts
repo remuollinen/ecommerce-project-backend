@@ -2,6 +2,7 @@ import express, { Application, Request, Response } from "express";
 import products from "./products.json";
 import cart from "./cart.json";
 import cors from "cors";
+import fetch from "node-fetch";
 
 interface Item {
 	id: number;
@@ -77,15 +78,24 @@ app.post("/api/cart", (req: Request, res: Response) => {
 // NOT WORKING
 // ***********
 
-app.patch("/api/cart/:id", (req: Request, res: Response) => {
+app.post("/api/cart", (req: Request, res: Response) => {
 	try {
-		const id: number = +req.params.id;
+		const id: number = req.body.id;
 		const product = req.body;
-		const productIndex = cartItems.findIndex((product) => product.id === id);
 
-		cartItems[productIndex] = product;
+		const options = {
+			method: "PUT",
+			mode: "cors",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(product),
+		};
 
-		res.json(cartItems[productIndex]);
+		fetch(`http://localhost:4000/api/cart/${id}`, options)
+			.then((data) => data.json())
+			.then((result) => res.json(result))
+			.catch((err) => res.json(err));
 	} catch (error) {
 		console.log(error);
 	}
